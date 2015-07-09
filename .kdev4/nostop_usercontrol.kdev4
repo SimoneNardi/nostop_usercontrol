@@ -1,3 +1,6 @@
+[Buildset]
+BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00$\x00n\x00o\x00s\x00t\x00o\x00p\x00_\x00u\x00s\x00e\x00r\x00c\x00o\x00n\x00t\x00r\x00o\x00l)
+
 [CMake]
 Build Directory Count=1
 Current Build Directory Index=0
@@ -9,7 +12,28 @@ Build Type=Debug
 CMake Binary=file:///usr/bin/cmake
 Environment Profile=
 Extra Arguments=-DCATKIN_DEVEL_PREFIX=../devel -DCMAKE_INSTALL_PREFIX=../install
-Install Directory=
+Install Directory=file:///home/simone/catkin_ws/install
+
+[Launch]
+Launch Configurations=Launch Configuration 0
+
+[Launch][Launch Configuration 0]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=UserControl
+Type=Native Application
+
+[Launch][Launch Configuration 0][Data]
+Arguments=
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x02\x00\x00\x00$\x00n\x00o\x00s\x00t\x00o\x00p\x00_\x00u\x00s\x00e\x00r\x00c\x00o\x00n\x00t\x00r\x00o\x00l\x00\x00\x00\x16\x00U\x00s\x00e\x00r\x00C\x00o\x00n\x00t\x00r\x00o\x00l)
+Dependency Action=Build
+EnvironmentGroup=default
+Executable=file:///home/simone/catkin_ws/src/nostop_usercontrol/
+External Terminal=konsole --noclose --workdir %workdir -e %exe
+Project Target=nostop_usercontrol,UserControl
+Use External Terminal=false
+Working Directory=
+isExecutable=false
 
 [Project]
 VersionControlSupport=kdevgit
