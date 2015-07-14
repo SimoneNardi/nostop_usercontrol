@@ -1,11 +1,9 @@
 <launch>
 
-<param name ="robot_name" value="0">
+  <include file="(find pr2_teleop)/teleop_keyboard.launch">
 
-<include file="(find pr2_teleop)/teleop_keyboard.launch">
-
-<node pkg="nostop_usercontrol" type="UserControl" name="UserControl" output="screen">
-
-</node>
+  <node pkg="nostop_usercontrol" type="nostop_usercontrol_node.cpp" name="UserControl" required="true" output="screen>
+    <param name="robot_name" value="0" />
+  </node>
 
 </launch>
