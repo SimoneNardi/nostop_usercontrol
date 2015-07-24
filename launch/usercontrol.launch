@@ -2,8 +2,8 @@
 
   <include file="(find pr2_teleop)/teleop_keyboard.launch">
 
-  <node pkg="nostop_usercontrol" type="nostop_usercontrol_node.cpp" name="UserControl" required="true" output="screen>
-    <param name="robot_name" value="0" />
+  <node pkg="nostop_usercontrol" type="UserControl" name="$(anon UserControl)" required="true" output="screen">
+    <param name="robot_name" value="red_blue" />
   </node>
-
+ 
 </launch>
