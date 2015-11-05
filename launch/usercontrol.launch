@@ -1,9 +1,6 @@
 <launch>
 
-  <include file="(find pr2_teleop)/teleop_keyboard.launch">
-
-  <node pkg="nostop_usercontrol" type="UserControl" name="$(anon UserControl)" required="true" output="screen">
-    <param name="robot_name" value="red_blue" />
-  </node>
-
+  <node name="$(anon joy)" pkg="nostop_usercontrol" type="nostop_usercontrol_node"/>
+  <node name="$(anon joy_driver)" pkg="joy" type="joy_node"/>
+  
 </launch>
