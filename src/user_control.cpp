@@ -97,7 +97,7 @@ int main(int argc, char** argv)
 {
     ros::init(argc, argv, "thief_joy_node");
 
-    joy_handler joy_h("/Thief");
+    joy_handler joy_h("/red_blue");
 
     ROS_INFO("Joy Handler Started");
 
