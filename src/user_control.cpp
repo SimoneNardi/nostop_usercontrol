@@ -58,13 +58,14 @@ joy_handler::joy_handler(std::string namespace_)
 }
 
 void joy_handler::joy_receive(const sensor_msgs::Joy::ConstPtr& joy_msg)
+try
 {
-    if(dual_mode)
-    {
-	twist.linear.x = MAX_LIN_VEL*joy_msg->axes.at(1);
-	      twist.angular.z = MAX_ANG_VEL*joy_msg->axes.at(2);
-	  }
-    else
+//     if(dual_mode)
+//     {
+// 	twist.linear.x = MAX_LIN_VEL*joy_msg->axes.at(1);
+// 	twist.angular.z = MAX_ANG_VEL*joy_msg->axes.at(2);
+//     }
+//     else
     {
 	twist.linear.x = MAX_LIN_VEL*joy_msg->axes.at(1);
 	twist.angular.z = MAX_ANG_VEL*joy_msg->axes.at(0);
@@ -87,6 +88,9 @@ void joy_handler::joy_receive(const sensor_msgs::Joy::ConstPtr& joy_msg)
     
     twist_pub.publish(twist);
 }
+catch(...)
+{
+}
 
 joy_handler::~joy_handler()
 {
@@ -97,7 +101,7 @@ int main(int argc, char** argv)
 {
     ros::init(argc, argv, "thief_joy_node");
 
-    joy_handler joy_h("/red_blue");
+    joy_handler joy_h("/thief");
 
     ROS_INFO("Joy Handler Started");
 
