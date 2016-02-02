@@ -34,6 +34,10 @@
 *
 * Author: Alessandro Settimi 2015
 * Author: Mirko Ferrati 2015
+* 
+* 
+* Modified by:  Niko Giovannini 
+* 		Alessandro Faralli
 *********************************************************************/
 
 #include "user_control.h"
@@ -44,7 +48,7 @@ double MAX_ANG_VEL = -1.0;
 
 joy_handler::joy_handler(std::string namespace_)
 {
-    
+    ROS_INFO("start Costruttore di usercontrol");
     joy_sub  = nodeh.subscribe<sensor_msgs::Joy>("/joy", 1, &joy_handler::joy_receive, this);
     std::string l_topic_name = namespace_  + "/cmd_vel";
     twist_pub = nodeh.advertise<geometry_msgs::Twist>(l_topic_name.c_str(), 1);
@@ -55,11 +59,15 @@ joy_handler::joy_handler(std::string namespace_)
     twist.angular.x=0;
     twist.angular.y=0;
     twist.angular.z=0;
+    ROS_INFO("end Costruttore di usercontrol");
 }
 
 void joy_handler::joy_receive(const sensor_msgs::Joy::ConstPtr& joy_msg)
 try
 {
+  
+  ROS_INFO("joipad ricevuto");
+  
 //     if(dual_mode)
 //     {
 // 	twist.linear.x = MAX_LIN_VEL*joy_msg->axes.at(1);
@@ -75,17 +83,27 @@ try
       dual_mode=!(dual_mode);
     
     if(joy_msg->buttons.at(4))
-      MAX_LIN_VEL+=STEP_LIN_VEL;
+    {
+    ROS_INFO("Bottone 5 -----> somma velocità lineare : %f", MAX_LIN_VEL);
+    MAX_LIN_VEL+=STEP_LIN_VEL;
+    }
     
     if(joy_msg->buttons.at(5) && MAX_ANG_VEL < 0)
+    {
+      ROS_INFO("Bottone 6 -----> somma velocità angolare : %f", MAX_LIN_VEL);
       MAX_ANG_VEL+=STEP_LIN_VEL;
-    
+    }
     if(joy_msg->buttons.at(6) && MAX_LIN_VEL > 0)
+    {
       MAX_LIN_VEL-=STEP_LIN_VEL;
+      ROS_INFO("Bottone 7 -----> somma velocità lineare : %f", MAX_LIN_VEL);
+    }
     
     if(joy_msg->buttons.at(7))
+    {
+      ROS_INFO("Bottone 8 -----> somma velocità angolare : %f", MAX_ANG_VEL);
       MAX_LIN_VEL-=STEP_LIN_VEL;
-    
+    }
     twist_pub.publish(twist);
 }
 catch(...)
