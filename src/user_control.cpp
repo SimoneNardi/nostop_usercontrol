@@ -43,8 +43,9 @@
 #include "user_control.h"
 
 double MAX_LIN_VEL = 0.3;
-double STEP_LIN_VEL = 0.01;
-double MAX_ANG_VEL = -1.0;
+double STEP_LIN_VEL = 0.1;
+double MAX_ANG_VEL = 0.0;
+double STEP_ANG_VEL = 10;
 
 joy_handler::joy_handler(std::string namespace_)
 {
@@ -76,7 +77,7 @@ try
 //     else
     {
 	twist.linear.x = MAX_LIN_VEL*joy_msg->axes.at(1);
-	twist.angular.z = MAX_ANG_VEL*joy_msg->axes.at(0);
+	twist.angular.z = -MAX_ANG_VEL*joy_msg->axes.at(0);
     }
     
     if(joy_msg->buttons.at(0))
@@ -84,25 +85,25 @@ try
     
     if(joy_msg->buttons.at(4))
     {
-    ROS_INFO("Bottone 5 -----> somma velocità lineare : %f", MAX_LIN_VEL);
+    ROS_INFO("Bottone 5 -----> somma velocitàlineare : %f", MAX_LIN_VEL);
     MAX_LIN_VEL+=STEP_LIN_VEL;
     }
     
-    if(joy_msg->buttons.at(5) && MAX_ANG_VEL < 0)
+    if(joy_msg->buttons.at(5))
     {
-      ROS_INFO("Bottone 6 -----> somma velocità angolare : %f", MAX_LIN_VEL);
-      MAX_ANG_VEL+=STEP_LIN_VEL;
+      ROS_INFO("Bottone 6 -----> somma velocitàangolare : %f", MAX_ANG_VEL);
+      MAX_ANG_VEL+=STEP_ANG_VEL;
     }
     if(joy_msg->buttons.at(6) && MAX_LIN_VEL > 0)
     {
+      ROS_INFO("Bottone 7 -----> somma velocitàlineare : %f", MAX_LIN_VEL);
       MAX_LIN_VEL-=STEP_LIN_VEL;
-      ROS_INFO("Bottone 7 -----> somma velocità lineare : %f", MAX_LIN_VEL);
     }
     
-    if(joy_msg->buttons.at(7))
+    if(joy_msg->buttons.at(7) && MAX_ANG_VEL > 0)
     {
-      ROS_INFO("Bottone 8 -----> somma velocità angolare : %f", MAX_ANG_VEL);
-      MAX_LIN_VEL-=STEP_LIN_VEL;
+      ROS_INFO("Bottone 8 -----> somma velocitàangolare : %f", MAX_ANG_VEL);
+      MAX_ANG_VEL-=STEP_ANG_VEL;
     }
     twist_pub.publish(twist);
 }
