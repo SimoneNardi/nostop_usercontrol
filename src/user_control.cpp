@@ -118,9 +118,9 @@ joy_handler::~joy_handler()
 
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "thief_joy_node");
+    ros::init(argc, argv, "arduino_joy_node");
 
-    joy_handler joy_h("/thief");
+    joy_handler joy_h("/green_yellow");
 
     ROS_INFO("Joy Handler Started");
 
