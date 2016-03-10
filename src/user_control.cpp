@@ -119,8 +119,10 @@ joy_handler::~joy_handler()
 int main(int argc, char** argv)
 {
     ros::init(argc, argv, "arduino_joy_node");
-
-    joy_handler joy_h("/green_yellow");
+    ros::NodeHandle l_node("~");
+    std::string robot_name;
+    l_node.getParam("robot_name",robot_name);
+    joy_handler joy_h(robot_name);
 
     ROS_INFO("Joy Handler Started");
 
