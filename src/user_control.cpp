@@ -121,8 +121,13 @@ int main(int argc, char** argv)
     ros::init(argc, argv, "arduino_joy_node");
     ros::NodeHandle l_node("~");
     std::string robot_name;
-    l_node.getParam("robot_name",robot_name);
-    joy_handler joy_h(robot_name);
+    
+    if (l_node.hasParam("robot_name"))
+      l_node.getParam("robot_name",robot_name);
+    else
+      robot_name = "thief";
+    
+    joy_handler joy_h("/"+robot_name);
 
     ROS_INFO("Joy Handler Started");
 
