@@ -1,9 +1,9 @@
 <!-- (OK @ 10-03-2016) -->
 <launch>
 
-  <node name="green_yellow" pkg="nostop_usercontrol" type="nostop_usercontrol_node">
-   <param name="robot_name" value="green_yellow"/>
+  <node name="thief" pkg="nostop_usercontrol" type="nostop_usercontrol_node">
+   <param name="robot_name" value="thief"/>
   </node>
-<!--   <node name="$(anon joy_driver)" pkg="joy" type="joy_node"/> -->
+  <node name="$(anon joy_driver)" pkg="joy" type="joy_node"/>
   
 </launch>

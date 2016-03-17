@@ -85,24 +85,24 @@ try
     
     if(joy_msg->buttons.at(4))
     {
-    ROS_INFO("Bottone 5 -----> somma velocitàlineare : %f", MAX_LIN_VEL);
+    ROS_INFO("Bottone 5 -----> somma velocità lineare : %f", MAX_LIN_VEL);
     MAX_LIN_VEL+=STEP_LIN_VEL;
     }
     
     if(joy_msg->buttons.at(5))
     {
-      ROS_INFO("Bottone 6 -----> somma velocitàangolare : %f", MAX_ANG_VEL);
+      ROS_INFO("Bottone 6 -----> somma velocità angolare : %f", MAX_ANG_VEL);
       MAX_ANG_VEL+=STEP_ANG_VEL;
     }
     if(joy_msg->buttons.at(6) && MAX_LIN_VEL > 0)
     {
-      ROS_INFO("Bottone 7 -----> somma velocitàlineare : %f", MAX_LIN_VEL);
+      ROS_INFO("Bottone 7 -----> somma velocità lineare : %f", MAX_LIN_VEL);
       MAX_LIN_VEL-=STEP_LIN_VEL;
     }
     
     if(joy_msg->buttons.at(7) && MAX_ANG_VEL > 0)
     {
-      ROS_INFO("Bottone 8 -----> somma velocitàangolare : %f", MAX_ANG_VEL);
+      ROS_INFO("Bottone 8 -----> somma velocità angolare : %f", MAX_ANG_VEL);
       MAX_ANG_VEL-=STEP_ANG_VEL;
     }
     twist_pub.publish(twist);
